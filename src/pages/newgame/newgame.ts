@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, NavController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-game',
@@ -10,12 +11,16 @@ export class NewGamePage {
   qtdJogadas;
   dadoFisico = false;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
-
-  }
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, private storage: Storage) {}
 
   jogar() {
-    this.showRadio();
+    this.storage.get('dadoFisico').then((val) => {
+      if(val == null) {
+        this.showRadio();
+      }
+    })
+
+    console.log(this.dadoFisico);
   }
 
   showRadio() {
@@ -40,7 +45,7 @@ export class NewGamePage {
       type: 'radio',
       label: 'Não, salvar para todos os jogos.',
       value: '3',
-      checked: true
+      checked: false
     });
 
     alert.addInput({
@@ -54,7 +59,20 @@ export class NewGamePage {
     alert.addButton({
       text: 'OK',
       handler: data => {
-        this.dadoFisico = true;
+        if(data == 3 || data == 4) {
+          this.dadoFisico = false;
+        } else {
+          this.dadoFisico = true;
+        }
+
+        if(data == 1) {
+          this.storage.set('dadoFisico', true);
+        }
+
+        if(data == 3) {
+          this.storage.set('dadoFisico', false);
+        }
+
       }
     });
     alert.present();
