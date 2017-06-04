@@ -1,5 +1,6 @@
-# mahalila
+# Mahalila
 Mahalila app (Ionic Framework)
 
-# Como iniciar projeto
+## Como iniciar projeto
+* Executar comando:
 <pre>npm install</pre>
