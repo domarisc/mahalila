@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../pages/home/home';
 import { NewGamePage } from '../pages/newgame/newgame';
 import { AboutPage } from '../pages/about/about';
+import { ConfigurationPage } from '../pages/configuration/configuration';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,6 +27,7 @@ export class MyApp {
     this.pages = [
       { title: 'Início', component: HomePage },
       { title: 'Novo Jogo', component: NewGamePage },
+      { title: 'Configurações', component: ConfigurationPage },
       { title: 'Sobre', component: AboutPage }
     ];
   }
